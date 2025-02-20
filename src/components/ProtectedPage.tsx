@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import WalletConnectModal from "@/components/common/WalletConnectModal";
+import AuthModal from "@/components/common/AuthModal";
 import Button from "@/components/common/Button";
 import {motion} from "framer-motion";
 import {FaWallet} from "react-icons/fa";
@@ -62,7 +62,7 @@ const ProtectedPage: React.FC = () => {
                     />
                 </motion.div>
             </motion.div>
-            <WalletConnectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
+            <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
         </div>
     );
 };

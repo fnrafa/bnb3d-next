@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {useRouter} from "next/router";
 import Image from "next/image";
 import {FaWallet, FaBars, FaTimes} from "react-icons/fa";
-import WalletConnectModal from "@/components/common/WalletConnectModal";
+import AuthModal from "@/components/common/AuthModal";
 import Button from "@/components/common/Button";
 import {useWallet} from "@/context/Wallet";
 import Link from "next/link";
@@ -120,7 +120,7 @@ const Header: React.FC = () => {
                 </ul>
             </div>
 
-            <WalletConnectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
+            <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
         </header>
     );
 };

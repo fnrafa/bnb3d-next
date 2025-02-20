@@ -69,7 +69,7 @@ const LoggedInComponent: React.FC<LoggedInComponentProps> = ({
         : "Unknown Address";
 
     return (
-        <div className="space-y-6 relative shadow-lg rounded-lg max-w-md mx-auto">
+        <div className="space-y-6 relative shadow-lg rounded-lg min-w-[50vh] max-w-md mx-auto">
             <div className="flex justify-center items-center space-x-2">
                 <Image src="/icon.png" alt="Logic AI Logo" width={32} height={32} className="sm:w-12 sm:h-12"/>
                 <p className="text-white font-bold text-lg sm:text-xl">Profile Account</p>

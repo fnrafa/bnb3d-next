@@ -3,7 +3,7 @@ import {motion} from "framer-motion";
 
 interface Props {
     label?: string;
-    onClick: () => void;
+    onClick?: () => void;
     type?: "button" | "submit" | "reset";
     children?: React.ReactNode;
     fullWidth?: boolean;
