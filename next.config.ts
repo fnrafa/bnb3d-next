@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
             },
             {
                 protocol: "https",
-                hostname: "logicai.technology",
+                hostname: "bnb3d.tech",
             },
             {
                 protocol: "http",

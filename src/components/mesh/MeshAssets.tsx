@@ -13,17 +13,19 @@ const MeshAssets: React.FC = () => {
     const [meshList, setMeshList] = useState<MeshData[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
+    const [hasFetched, setHasFetched] = useState(false);
     const alert = useAlert();
     const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "";
     const itemsPerPage = 12;
     const router = useRouter();
 
     const fetchUserMeshes = useCallback(async () => {
+        if (hasFetched) return;
+        setHasFetched(true);
         try {
             const token = getToken();
             if (!token) {
                 alert("User token not found. Please log in.", "error");
-                setIsLoading(false);
                 return;
             }
             const response = await axios.get(`${API_BASE_URL}/model/user`, {
@@ -35,7 +37,7 @@ const MeshAssets: React.FC = () => {
         } finally {
             setIsLoading(false);
         }
-    }, [alert, API_BASE_URL]);
+    }, [alert, API_BASE_URL, hasFetched]);
 
     useEffect(() => {
         fetchUserMeshes().then();

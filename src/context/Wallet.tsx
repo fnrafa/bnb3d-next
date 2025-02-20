@@ -2,7 +2,7 @@ import React, {createContext, useContext, useState, ReactNode, useEffect} from "
 import {connectWallet as connect, disconnectWallet as disconnect} from "@/utils/wallet";
 import {saveUser, clearUser, getUser} from "@/utils/user";
 import {useAlert} from "@/context/Alert";
-import {useLoader} from "@/context/Loader";
+import {useRouter} from "next/router";
 
 interface WalletContextType {
     connectedWallet: string | null;
@@ -19,7 +19,7 @@ export const WalletProvider: React.FC<{ children: ReactNode }> = ({children}) =>
     const [walletAddress, setWalletAddress] = useState<string | null>(null);
     const [isConnecting, setIsConnecting] = useState<boolean>(false);
     const alert = useAlert();
-    const loader = useLoader();
+    const router = useRouter();
 
     useEffect(() => {
         const storedUser = getUser();
@@ -31,7 +31,6 @@ export const WalletProvider: React.FC<{ children: ReactNode }> = ({children}) =>
 
     const connectWallet = async (walletName: string) => {
         setIsConnecting(true);
-        loader(true, {size: "large"});
 
         try {
             const result = await connect(walletName);
@@ -52,24 +51,24 @@ export const WalletProvider: React.FC<{ children: ReactNode }> = ({children}) =>
 
             setConnectedWallet(walletName);
             setWalletAddress(result.user!.address);
-
             alert(`Connected to ${walletName}: ${result.user!.username}`, "success");
+
+            router.reload();
         } catch (error: any) {
             alert(error.message || "Failed to authenticate with the server.", "error");
         } finally {
             setIsConnecting(false);
-            loader(false);
         }
     };
 
     const disconnectWallet = async () => {
-        loader(true, {size: "large"});
         await disconnect();
         clearUser();
         setConnectedWallet(null);
         setWalletAddress(null);
-        loader(false);
         alert("Wallet disconnected", "info");
+
+        router.reload();
     };
 
     return (

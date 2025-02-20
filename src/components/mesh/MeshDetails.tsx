@@ -25,7 +25,7 @@ const MeshDetails: React.FC<MeshDetailsProps> = ({title, taskId, userId, usernam
         if (!userId || hasFetched.current) return;
         hasFetched.current = true;
         axios
-            .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/mesh/user/${userId}`)
+            .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/model/user/${userId}`)
             .then((response) => setUserMeshes(response.data.data))
             .catch(() => {
             });
