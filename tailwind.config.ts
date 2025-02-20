@@ -28,7 +28,7 @@ const config: Config = {
                 tertiary: "#e53170",
             },
             fontFamily: {
-                Nunito: ["Nunito", "sans-serif"],
+                Prompt: ["Prompt", "sans-serif"],
             },
         },
     },

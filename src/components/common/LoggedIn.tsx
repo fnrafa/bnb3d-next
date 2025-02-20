@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {FaCopy, FaPencilAlt, FaSyncAlt} from "react-icons/fa";
+import {FaCopy, FaPencilAlt} from "react-icons/fa";
 import Button from "./Button";
 import {saveUser, getUser, getToken} from "@/utils/user";
 import axios from "axios";
@@ -21,35 +21,6 @@ const LoggedInComponent: React.FC<LoggedInComponentProps> = ({
                                                              }) => {
     const [username, setUsername] = useState<string | null>(user?.username || null);
     const [editMode, setEditMode] = useState(false);
-
-    const refreshUserData = async () => {
-        loader(true);
-        try {
-            const token = getToken();
-            if (!token) {
-                alert("User token not found. Please re-login.", "error");
-                return;
-            }
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user/me`, {
-                headers: {Authorization: `Bearer ${token}`},
-            });
-
-            const updatedUser = response.data.data;
-            saveUser({
-                id: user?.id || "unknown",
-                username: updatedUser?.username || user?.username,
-                address: user?.address || "",
-                point: updatedUser?.point || user?.point,
-                token: user?.token || "",
-                walletType: user?.walletType || "unknown",
-            });
-            alert("User data refreshed successfully!", "success");
-        } catch (error: any) {
-            alert(error.message || "Failed to refresh user data.", "error");
-        } finally {
-            loader(false);
-        }
-    };
 
     const handleUpdateUsername = async () => {
         if (!username || username.length < 4 || username.length > 20) {
@@ -98,14 +69,11 @@ const LoggedInComponent: React.FC<LoggedInComponentProps> = ({
         : "Unknown Address";
 
     return (
-        <div className="space-y-6 relative px-6 py-6 sm:px-8 shadow-lg rounded-lg max-w-md mx-auto">
+        <div className="space-y-6 relative shadow-lg rounded-lg max-w-md mx-auto">
             <div className="flex justify-center items-center space-x-2">
                 <Image src="/icon.png" alt="Logic AI Logo" width={32} height={32} className="sm:w-12 sm:h-12"/>
-                <p className="text-white font-bold text-lg sm:text-xl">BNB3D AI Points</p>
+                <p className="text-white font-bold text-lg sm:text-xl">Profile Account</p>
             </div>
-
-            <p className="text-center font-bold text-4xl sm:text-5xl text-highlight">{user?.point || 0}</p>
-
             <div className="text-center space-y-2">
                 {editMode ? (
                     <div className="flex flex-col items-center gap-3">
@@ -132,7 +100,6 @@ const LoggedInComponent: React.FC<LoggedInComponentProps> = ({
             </div>
 
             <div className="flex justify-end gap-4">
-                <Button label="Refresh" icon={<FaSyncAlt/>} onClick={refreshUserData}/>
                 <Button label="Disconnect" onClick={disconnectWallet}/>
             </div>
         </div>

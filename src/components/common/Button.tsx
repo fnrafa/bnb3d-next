@@ -24,7 +24,7 @@ const Button: React.FC<Props> = ({
                                  }) => {
     const buttonStyles = `
         relative font-semibold flex items-center justify-center gap-2
-        rounded-xl text-base p-3 transition-all duration-300 shadow-lg
+        rounded-md text-base p-3 transition-all duration-300 shadow-lg
         bg-button text-button-text focus:ring-2 focus:ring-secondary
         hover:brightness-110 hover:shadow-[0_0_10px_var(--tw-colors-highlight)]
         disabled:opacity-50 disabled:cursor-not-allowed

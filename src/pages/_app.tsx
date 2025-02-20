@@ -5,6 +5,7 @@ import HeadTitle from '@/components/HeadTitle';
 import LoadingProvider from '@/context/Loader';
 import {AlertProvider} from '@/context/Alert';
 import {WalletProvider} from '@/context/Wallet';
+import {GenerationProvider} from "@/context/Generation";
 
 function MyApp({Component, pageProps}: AppProps) {
     useEffect(() => {
@@ -17,10 +18,12 @@ function MyApp({Component, pageProps}: AppProps) {
         <LoadingProvider>
             <AlertProvider>
                 <WalletProvider>
-                    <HeadTitle/>
-                    <div className="flex flex-col min-h-screen">
-                        <Component {...pageProps} />
-                    </div>
+                    <GenerationProvider>
+                        <HeadTitle/>
+                        <div className="flex flex-col min-h-screen">
+                            <Component {...pageProps} />
+                        </div>
+                    </GenerationProvider>
                 </WalletProvider>
             </AlertProvider>
         </LoadingProvider>
