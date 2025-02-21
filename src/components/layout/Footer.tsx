@@ -1,15 +1,11 @@
 import React from "react";
-import {FaTelegram, FaDiscord, FaGithub} from "react-icons/fa";
-import {FaEthereum, FaXTwitter} from "react-icons/fa6";
+import { FaTelegram, FaXTwitter, FaGlobe } from "react-icons/fa6"; // FaGlobe untuk website
 
 const socialLinks = [
-    {href: "#", icon: <FaTelegram size={20}/>, label: "Telegram"},
-    {href: "#", icon: <FaXTwitter size={20}/>, label: "X (Twitter)"},
-    {href: "#", icon: <FaEthereum size={20}/>, label: "Ethereum"},
-    {href: "#", icon: <FaDiscord size={20}/>, label: "Discord"},
-    {href: "#", icon: <FaGithub size={20}/>, label: "GitHub"},
+    { href: "https://www.bnb3dai.com", icon: <FaGlobe size={20} />, label: "Website" },
+    { href: "https://x.com/BNB3D_BSC", icon: <FaXTwitter size={20} />, label: "X (Twitter)" },
+    { href: "https://t.me/BNB3DAI", icon: <FaTelegram size={20} />, label: "Telegram" },
 ];
-
 
 const Footer: React.FC = () => {
     return (
@@ -24,8 +20,13 @@ const Footer: React.FC = () => {
                     </p>
                     <div className="flex space-x-4 mt-4">
                         {socialLinks.map((social, index) => (
-                            <a key={index} href={social.href}
-                               className="text-secondary hover:text-highlight transition">
+                            <a
+                                key={index}
+                                href={social.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-secondary hover:text-highlight transition"
+                            >
                                 {social.icon}
                             </a>
                         ))}
