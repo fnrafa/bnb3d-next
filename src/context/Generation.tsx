@@ -38,7 +38,7 @@ export const GenerationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             }
         });
 
-        const storedTask = localStorage.getItem("DND3D_AI_TASK");
+        const storedTask = localStorage.getItem("DND3D_AI_GENERATION_TASK");
         if (storedTask) {
             const parsedTask = JSON.parse(storedTask);
             setTask(parsedTask);

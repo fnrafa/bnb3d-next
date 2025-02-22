@@ -7,7 +7,7 @@
         walletType: string;
     }
 
-    const USER_KEY = "DND3D_AI_USER";
+    const USER_KEY = "DND3D_AI_ACCOUNT";
 
     const isBrowser = (): boolean => typeof window !== "undefined";
 
